@@ -1,4 +1,4 @@
 test Welcome to SocialLoginExapmles　:-)
 
 ソーシャルネットワークのAPIを利用してログインするコードを集めるプロジェクトです。
-CakePHP2.0を使っています。
+ウェブアプリケーションフレームワークにCakePHP2.0を、UIフレームワークはbootstrapを使っています。

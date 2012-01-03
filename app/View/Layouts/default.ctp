@@ -22,7 +22,10 @@
 		<div class="hero-unit">
 			<h1>Welcome!</h1>
 			<p>ソーシャルネットワークのAPIを利用してログインするコードを集めるプロジェクトです。</p>
+			<p>ウェブアプリケーションフレームワークに<?php echo $this->Html->link('CakePHP2.0', 'http://cakephp.jp/', array('target'=>'_blank')); ?>を、UIフレームワークに<?php echo $this->Html->link('bootstrap', 'http://twitter.github.com/bootstrap/', array('target'=>'_blank')); ?>を使っています。</p>
   		</div>
+
+
 
 		<div class="row">
 			<div class="span16">
