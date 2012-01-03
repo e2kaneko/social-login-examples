@@ -1,0 +1,7 @@
+<?php 
+
+$config["Facebook"] = array(
+    "appId"  => "",
+    "appSecret" => "",
+    "callbackUrl"   => "http://localhost/sb/Login/facebook",
+);
