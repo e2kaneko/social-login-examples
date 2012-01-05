@@ -7,9 +7,9 @@ class LoginController extends AppController {
 	public function facebook() {
 		$this->Session->write('user.facebook', array());
 
-		$app_id = Configure::read("Facebook.appId");
-		$app_secret = Configure::read("Facebook.appSecret");
-		$my_url = Configure::read("Facebook.callbackUrl");
+		$appId = Configure::read("Facebook.appId");
+		$appSecret = Configure::read("Facebook.appSecret");
+		$callbackUrl = Configure::read("Facebook.callbackUrl");
 		$code = null;
 
 		if(isset($this->params["url"]["code"])){
@@ -18,15 +18,15 @@ class LoginController extends AppController {
 			
 		if(empty($code)) {
 			$dialog_url = "http://www.facebook.com/dialog/oauth?client_id="
-			. $app_id . "&redirect_uri=" . urlencode($my_url);
+			. $appId . "&redirect_uri=" . urlencode($callbackUrl);
 			$this->redirect($dialog_url);
 		}else{
 			
 			// callback
 
 			$token_url = "https://graph.facebook.com/oauth/access_token?client_id="
-			. $app_id . "&redirect_uri=" . urlencode($my_url) . "&client_secret="
-			. $app_secret . "&code=" . $code;
+			. $appId . "&redirect_uri=" . urlencode($callbackUrl) . "&client_secret="
+			. $appSecret . "&code=" . $code;
 	
 			$access_token = file_get_contents($token_url);
 			$graph_url = "https://graph.facebook.com/me?" . $access_token;
@@ -41,6 +41,9 @@ class LoginController extends AppController {
 	public function twitter() {
 		App::import('Vendor','oauth', array('file'=>'HTTP'.DS.'OAuth'.DS.'Consumer.php'));
 
+		$consumerKey = Configure::read("Twitter.consumerKey");
+		$consumerSecret = Configure::read("Twitter.consumerSecret");
+		$callbackUrl = Configure::read("Facebook.callbackUrl");
 		
 		if(isset($this->params["url"]["oauth_token"])){
 			$code = $this->params["url"]["oauth_token"];
@@ -50,7 +53,7 @@ class LoginController extends AppController {
 			
 			// callback
 			
-			$oAuth = new HTTP_OAuth_Consumer("jOxQUQq3wiqLZsnPwbPZMA", "D3UmNatQ7qS8D3e1Q8er536WNqLxkjbfy4TM0yLLjw4");
+			$oAuth = new HTTP_OAuth_Consumer($consumerKey, $consumerSecret);
 			$httpRequest = new HTTP_Request2();
 			$httpRequest->setConfig("ssl_verify_peer", false);
 			$consumerRequest = new HTTP_OAuth_Consumer_Request;
@@ -70,9 +73,7 @@ class LoginController extends AppController {
 			
 		}else{
 		
-			$callbackUrl = "http://localhost/sb/Login/twitter";
-	
-			$oAuth = new HTTP_OAuth_Consumer("jOxQUQq3wiqLZsnPwbPZMA", "D3UmNatQ7qS8D3e1Q8er536WNqLxkjbfy4TM0yLLjw4");
+			$oAuth = new HTTP_OAuth_Consumer($consumerKey, $consumerSecret);
 			$httpRequest = new HTTP_Request2();
 			$httpRequest->setConfig("ssl_verify_peer", false);
 			$consumerRequest = new HTTP_OAuth_Consumer_Request;
