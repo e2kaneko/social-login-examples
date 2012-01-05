@@ -14,7 +14,11 @@ if($this->Auth->isFacebookLogin()){
 	echo $facebookUser->name;
 }
 
-echo $this->Html->image('socialicon/097304-3d-transparent-glass-icon-social-media-logos-twitter-logo-square.png', array('alt'=> 'Twitterアカウントでログイン', 'border' => '0', 'width'=>'128', 'height'=>'128'));
+echo $this->Html->link(
+		$this->Html->image('socialicon/097304-3d-transparent-glass-icon-social-media-logos-twitter-logo-square.png', array('alt'=> 'Twitterアカウントでログイン', 'border' => '0', 'width'=>'128', 'height'=>'128')),
+		array('action' => '../Login/twitter'),
+		array('target' => '_self', 'escape' => false)
+);
 
 ?>
 

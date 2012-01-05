@@ -5,3 +5,9 @@ $config["Facebook"] = array(
     "appSecret" => "",
     "callbackUrl"   => "http://localhost/sb/Login/facebook",
 );
+
+$config["Twitter"] = array(
+    "consumerKey"  => "",
+    "consumerSecret" => "",
+    "callbackUrl"   => "http://localhost/sb/Login/twitter",
+);
