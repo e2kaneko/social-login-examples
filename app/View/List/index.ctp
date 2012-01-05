@@ -24,7 +24,7 @@ if($this->Auth->isFacebookLogin()){
 	echo $this->Form->postLink(
 		'すべてログアウトする',
 		array('action' => '../Logout/all'),
-		array('confirm' => 'Are you sure?'));
+		array('confirm' => 'ログアウトします。よろしいですか？'));
 }
 ?>
 </div>
