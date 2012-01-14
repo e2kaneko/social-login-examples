@@ -39,11 +39,11 @@ class LoginController extends AppController {
 	}
 
 	public function twitter() {
-		App::import('Vendor','oauth', array('file'=>'HTTP'.DS.'OAuth'.DS.'Consumer.php'));
+		App::import('Vendor','pear', array('file'=>'pear'.DS.'HTTP'.DS.'OAuth'.DS.'Consumer.php'));
 
 		$consumerKey = Configure::read("Twitter.consumerKey");
 		$consumerSecret = Configure::read("Twitter.consumerSecret");
-		$callbackUrl = Configure::read("Facebook.callbackUrl");
+		$callbackUrl = Configure::read("Twitter.callbackUrl");
 		
 		if(isset($this->params["url"]["oauth_token"])){
 			$code = $this->params["url"]["oauth_token"];
@@ -52,7 +52,6 @@ class LoginController extends AppController {
 		if(!empty($code)){
 			
 			// callback
-			
 			$oAuth = new HTTP_OAuth_Consumer($consumerKey, $consumerSecret);
 			$httpRequest = new HTTP_Request2();
 			$httpRequest->setConfig("ssl_verify_peer", false);
@@ -68,7 +67,16 @@ class LoginController extends AppController {
 	
 			$accessToken = $oAuth->getToken();
 			$accessTokenSecret = $oAuth->getTokenSecret();
+
+			// @see https://dev.twitter.com/docs/api/1/get/account/verify_credentials
+			$oAuth->setToken($accessToken);
+			$oAuth->setTokenSecret($accessTokenSecret);
+			$response = $oAuth->sendRequest("http://twitter.com/account/verify_credentials.xml", array(), "GET");
+			$responseXml = simplexml_load_string($response->getBody());
 			
+			$twitterUser = array("user"=>(string)$responseXml->name);
+			$this->Session->write('user.twitter', $twitterUser);
+
 			$this->redirect('/List');
 			
 		}else{
@@ -92,5 +100,3 @@ class LoginController extends AppController {
 		}
 	}
 }
-
-

@@ -6,6 +6,7 @@ class LogoutController extends AppController {
 
 	public function all() {
 		$this->Session->delete('user.facebook');
+		$this->Session->delete('user.twitter');
 		$this->Session->destroy();
 		$this->redirect('/List');
 	}

@@ -4,7 +4,7 @@
 
 <div>
 <?php
-echo $this->Html->image('socialicon/facebook.png', array('alt'=> 'Facebookアカウントでログイン', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+echo $this->Html->image('socialicon/facebook.png', array('alt'=> 'Facebook', 'border' => '0', 'width'=>'16', 'height'=>'16'));
 if($this->Auth->isFacebookLogin()){
 	echo $facebookUser->name;
 }else{
@@ -12,25 +12,30 @@ if($this->Auth->isFacebookLogin()){
 			"Facebookでログイン",
 			array('action' => '../Login/facebook'),
 			array('target' => '_self', 'escape' => false)
-);
+	);
 }
 ?>
 </div>
 
 <div>
 <?php
-echo $this->Html->image('socialicon/twitter.png', array('alt'=> 'Twitterアカウントでログイン', 'border' => '0', 'width'=>'16', 'height'=>'16'));
-echo $this->Html->link(
-		"Twitterでログイン",
-		array('action' => '../Login/twitter'),
-		array('target' => '_self', 'escape' => false)
-);
+echo $this->Html->image('socialicon/twitter.png', array('alt'=> 'Twitter', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+
+if($this->Auth->isTwitterLogin()){
+	echo $twitterUser{"user"};
+}else{
+	echo $this->Html->link(
+			"Twitterでログイン",
+			array('action' => '../Login/twitter'),
+			array('target' => '_self', 'escape' => false)
+	);
+}
 ?>
 </div>
 
 <div>
 <?php
-if($this->Auth->isFacebookLogin()){
+if($this->Auth->isLogin()){
 	echo $this->Form->postLink(
 		'すべてログアウトする',
 		array('action' => '../Logout/all'),

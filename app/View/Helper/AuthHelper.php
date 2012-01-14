@@ -6,4 +6,13 @@ class AuthHelper extends SessionHelper {
 		$facebookUser = $this->read("user.facebook");
 		return !empty($facebookUser);
 	}
+	
+	function isTwitterLogin(){
+		$twitterUser = $this->read("user.twitter");
+		return !empty($twitterUser);
+	}
+	
+	function isLogin(){
+		return ($this->isTwitterLogin() || $this->isFacebookLogin());
+	}
 }
