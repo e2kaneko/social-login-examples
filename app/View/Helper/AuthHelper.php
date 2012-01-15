@@ -6,18 +6,23 @@ class AuthHelper extends SessionHelper {
 		$facebookUser = $this->read("user.facebook");
 		return !empty($facebookUser);
 	}
-	
+
 	function isTwitterLogin(){
 		$twitterUser = $this->read("user.twitter");
 		return !empty($twitterUser);
 	}
-	
+
 	function isGithubLogin(){
 		$githubUser = $this->read("user.github");
 		return !empty($githubUser);
 	}
-	
+
+	function isGoogleLogin(){
+		$googleUser = $this->read("user.google");
+		return !empty($googleUser);
+	}
+
 	function isLogin(){
-		return ($this->isTwitterLogin() || $this->isFacebookLogin() || $this->isGithubLogin());
+		return ($this->isTwitterLogin() || $this->isFacebookLogin() || $this->isGithubLogin() || $this->isGoogleLogin());
 	}
 }

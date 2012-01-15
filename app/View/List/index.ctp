@@ -52,6 +52,23 @@ if($this->Auth->isGithubLogin()){
 ?>
 </div>
 
+<!-- Login with Google -->
+<div>
+<?php
+echo $this->Html->image('socialicon/github.png', array('alt'=> 'Github', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+
+if($this->Auth->isGoogleLogin()){
+	echo $googleUser->user->name;
+}else{
+	echo $this->Html->link(
+			"Googleでログイン",
+			array('action' => '../Login/google'),
+			array('target' => '_self', 'escape' => false)
+	);
+}
+?>
+</div>
+
 <div>
 <?php
 if($this->Auth->isLogin()){
