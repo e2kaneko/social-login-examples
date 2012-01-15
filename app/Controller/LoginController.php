@@ -21,7 +21,7 @@ class LoginController extends AppController {
 			. $appId . "&redirect_uri=" . urlencode($callbackUrl);
 			$this->redirect($dialog_url);
 		}else{
-				
+
 			// callback
 
 			$token_url = "https://graph.facebook.com/oauth/access_token?client_id="
@@ -50,7 +50,7 @@ class LoginController extends AppController {
 		}
 
 		if(!empty($code)){
-				
+
 			// callback
 			$oAuth = new HTTP_OAuth_Consumer($consumerKey, $consumerSecret);
 			$httpRequest = new HTTP_Request2();
@@ -73,12 +73,12 @@ class LoginController extends AppController {
 			$oAuth->setTokenSecret($accessTokenSecret);
 			$response = $oAuth->sendRequest("http://twitter.com/account/verify_credentials.xml", array(), "GET");
 			$responseXml = simplexml_load_string($response->getBody());
-				
+
 			$twitterUser = array("user"=>(string)$responseXml->name);
 			$this->Session->write('user.twitter', $twitterUser);
 
 			$this->redirect('/List');
-				
+
 		}else{
 
 			$oAuth = new HTTP_OAuth_Consumer($consumerKey, $consumerSecret);
@@ -95,7 +95,7 @@ class LoginController extends AppController {
 			$this->Session->write('oauth_request_token_secret', $oAuth->getTokenSecret());
 
 			header("Location: " . $authorizeUrl);
-				
+
 			die();
 		}
 	}
@@ -119,7 +119,7 @@ class LoginController extends AppController {
 			. $appId . "&redirect_uri=" . urlencode($callbackUrl);
 			$this->redirect($dialog_url);
 		}else{
-				
+
 			// callback
 
 			$token_url = "https://github.com/login/oauth/access_token?client_id="
@@ -129,14 +129,14 @@ class LoginController extends AppController {
 			$access_token = file_get_contents($token_url);
 			$graph_url = "https://github.com/api/v2/json/user/show?" . $access_token;
 			$user = json_decode(file_get_contents($graph_url));
-				
+
 			$this->Session->write('user.github', $user);
 
 			$this->redirect('/List');
 		}
 	}
 
-		public function google() {
+	public function google() {
 		// @see http://code.google.com/intl/ja/apis/accounts/docs/OAuth2.html
 
 		$this->Session->write('user.google', array());
@@ -144,6 +144,7 @@ class LoginController extends AppController {
 		$appId = Configure::read("Google.appId");
 		$appSecret = Configure::read("Google.appSecret");
 		$callbackUrl = Configure::read("Google.callbackUrl");
+		$googlePlusApiKey = Configure::read("Google.plusApiKey");
 		$code = null;
 
 		if(isset($this->params["url"]["code"])){
@@ -156,18 +157,46 @@ class LoginController extends AppController {
 
 			$this->redirect($dialog_url);
 		}else{
-				
+
 			// callback
 
-			$token_url = "https://accounts.google.com/o/oauth2/token?client_id="
-			. $appId . "&redirect_uri=" . urlencode($callbackUrl) . "&client_secret="
-			. $appSecret . "&code=" . $code . "&grant_type=authorization_code";
-			
-			$access_token = file_get_contents($token_url);
-			$graph_url = "https://www.googleapis.com/oauth2/v1/userinfo?" . $access_token;
-			$user = json_decode(file_get_contents($graph_url));
+			$tokenUrl = "https://accounts.google.com/o/oauth2/token";
 				
-			$this->Session->write('user.google', $user);
+			$tokenPostData = array(
+				"client_id"=>$appId,
+				"redirect_uri"=>$callbackUrl,
+				"client_secret"=>$appSecret,
+				"code"=>$code,
+				"grant_type"=>"authorization_code",
+			);
+			$tokenPostData = http_build_query($tokenPostData, "", "&");
+				
+			//header
+			$header = array(
+			    "Content-Type: application/x-www-form-urlencoded",
+			    "Content-Length: ".strlen($tokenPostData)
+			);
+			
+			$context = array(
+			    "http" => array(
+			        "method"  => "POST",
+			        "header"  => implode("\r\n", $header),
+			        "content" => $tokenPostData
+			    )
+			);
+			
+			$accessToken = file_get_contents($tokenUrl, false, stream_context_create($context));
+			$accessToken = json_decode($accessToken);
+			$accessToken = $accessToken->access_token;
+			
+			$graph_url = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" . $accessToken;
+			$user = json_decode(file_get_contents($graph_url));
+			
+			$userUrl = "https://www.googleapis.com/plus/v1/people/{$user->id}?fields=name&pp=1&key={$googlePlusApiKey}";
+			$userData = file_get_contents($userUrl);
+			$googlePlusUser = json_decode($userData);
+
+			$this->Session->write('user.google', $googlePlusUser);
 
 			$this->redirect('/List');
 		}

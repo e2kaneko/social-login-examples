@@ -55,13 +55,13 @@ if($this->Auth->isGithubLogin()){
 <!-- Login with Google -->
 <div>
 <?php
-echo $this->Html->image('socialicon/github.png', array('alt'=> 'Github', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+echo $this->Html->image(' ', array('alt'=> 'Github', 'border' => '0', 'width'=>'16', 'height'=>'16'));
 
 if($this->Auth->isGoogleLogin()){
-	echo $googleUser->user->name;
+	echo $googleUser->name->givenName . " " . $googleUser->name->familyName;
 }else{
 	echo $this->Html->link(
-			"Googleでログイン",
+			"Google+でログイン",
 			array('action' => '../Login/google'),
 			array('target' => '_self', 'escape' => false)
 	);
