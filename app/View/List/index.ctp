@@ -2,6 +2,7 @@
 	<li class="active"><?php echo $this->Html->link("Home", array('action' => '../List'));?></li>
 </ul>
 
+<!-- Login with Facebook -->
 <div>
 <?php
 echo $this->Html->image('socialicon/facebook.png', array('alt'=> 'Facebook', 'border' => '0', 'width'=>'16', 'height'=>'16'));
@@ -17,6 +18,7 @@ if($this->Auth->isFacebookLogin()){
 ?>
 </div>
 
+<!-- Login with Twitter -->
 <div>
 <?php
 echo $this->Html->image('socialicon/twitter.png', array('alt'=> 'Twitter', 'border' => '0', 'width'=>'16', 'height'=>'16'));
