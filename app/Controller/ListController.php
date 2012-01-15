@@ -10,5 +10,8 @@ class ListController extends AppController {
 		
 		$twitterUser = $this->Session->read('user.twitter');
 		$this->set('twitterUser', $twitterUser);
+
+		$githubUser = $this->Session->read('user.github');
+		$this->set('githubUser', $githubUser);
 	}
 }

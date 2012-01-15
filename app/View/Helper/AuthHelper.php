@@ -12,7 +12,12 @@ class AuthHelper extends SessionHelper {
 		return !empty($twitterUser);
 	}
 	
+	function isGithubLogin(){
+		$githubUser = $this->read("user.github");
+		return !empty($githubUser);
+	}
+	
 	function isLogin(){
-		return ($this->isTwitterLogin() || $this->isFacebookLogin());
+		return ($this->isTwitterLogin() || $this->isFacebookLogin() || $this->isGithubLogin());
 	}
 }

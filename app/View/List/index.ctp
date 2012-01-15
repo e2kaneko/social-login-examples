@@ -35,6 +35,23 @@ if($this->Auth->isTwitterLogin()){
 ?>
 </div>
 
+<!-- Login with Github -->
+<div>
+<?php
+echo $this->Html->image('socialicon/github.png', array('alt'=> 'Github', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+
+if($this->Auth->isGithubLogin()){
+	echo $githubUser->user->name;
+}else{
+	echo $this->Html->link(
+			"Githubでログイン",
+			array('action' => '../Login/github'),
+			array('target' => '_self', 'escape' => false)
+	);
+}
+?>
+</div>
+
 <div>
 <?php
 if($this->Auth->isLogin()){
