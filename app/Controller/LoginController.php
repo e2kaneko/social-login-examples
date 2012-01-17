@@ -103,8 +103,6 @@ class LoginController extends AppController {
 	public function github() {
 		// @see http://developer.github.com/v3/oauth/
 
-		$this->Session->write('user.github', array());
-
 		$appId = Configure::read("Github.appId");
 		$appSecret = Configure::read("Github.appSecret");
 		$callbackUrl = Configure::read("Github.callbackUrl");
@@ -136,15 +134,13 @@ class LoginController extends AppController {
 		}
 	}
 
-	public function google() {
+	public function googlePlus() {
 		// @see http://code.google.com/intl/ja/apis/accounts/docs/OAuth2.html
 
-		$this->Session->write('user.google', array());
-
-		$appId = Configure::read("Google.appId");
-		$appSecret = Configure::read("Google.appSecret");
-		$callbackUrl = Configure::read("Google.callbackUrl");
-		$googlePlusApiKey = Configure::read("Google.plusApiKey");
+		$appId = Configure::read("GooglePlus.appId");
+		$appSecret = Configure::read("GooglePlus.appSecret");
+		$callbackUrl = Configure::read("GooglePlus.callbackUrl");
+		$googlePlusApiKey = Configure::read("GooglePlus.plusApiKey");
 		$code = null;
 
 		if(isset($this->params["url"]["code"])){
@@ -196,7 +192,7 @@ class LoginController extends AppController {
 			$userData = file_get_contents($userUrl);
 			$googlePlusUser = json_decode($userData);
 
-			$this->Session->write('user.google', $googlePlusUser);
+			$this->Session->write('user.google-plus', $googlePlusUser);
 
 			$this->redirect('/List');
 		}

@@ -14,7 +14,7 @@ class ListController extends AppController {
 		$githubUser = $this->Session->read('user.github');
 		$this->set('githubUser', $githubUser);
 
-		$googleUser = $this->Session->read('user.google');
-		$this->set('googleUser', $googleUser);
+		$googleUser = $this->Session->read('user.google-plus');
+		$this->set('googlePlusUser', $googleUser);
 	}
 }

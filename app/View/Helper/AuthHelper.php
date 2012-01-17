@@ -17,12 +17,12 @@ class AuthHelper extends SessionHelper {
 		return !empty($githubUser);
 	}
 
-	function isGoogleLogin(){
-		$googleUser = $this->read("user.google");
+	function isGooglePlusLogin(){
+		$googleUser = $this->read("user.google-plus");
 		return !empty($googleUser);
 	}
 
 	function isLogin(){
-		return ($this->isTwitterLogin() || $this->isFacebookLogin() || $this->isGithubLogin() || $this->isGoogleLogin());
+		return ($this->isTwitterLogin() || $this->isFacebookLogin() || $this->isGithubLogin() || $this->isGooglePlusLogin());
 	}
 }

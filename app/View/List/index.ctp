@@ -6,6 +6,7 @@
 <div>
 <?php
 echo $this->Html->image('socialicon/facebook.png', array('alt'=> 'Facebook', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+echo "&nbsp;";
 if($this->Auth->isFacebookLogin()){
 	echo $facebookUser->name;
 }else{
@@ -22,7 +23,7 @@ if($this->Auth->isFacebookLogin()){
 <div>
 <?php
 echo $this->Html->image('socialicon/twitter.png', array('alt'=> 'Twitter', 'border' => '0', 'width'=>'16', 'height'=>'16'));
-
+echo "&nbsp;";
 if($this->Auth->isTwitterLogin()){
 	echo $twitterUser{"user"};
 }else{
@@ -39,7 +40,7 @@ if($this->Auth->isTwitterLogin()){
 <div>
 <?php
 echo $this->Html->image('socialicon/github.png', array('alt'=> 'Github', 'border' => '0', 'width'=>'16', 'height'=>'16'));
-
+echo "&nbsp;";
 if($this->Auth->isGithubLogin()){
 	echo $githubUser->user->name;
 }else{
@@ -52,17 +53,17 @@ if($this->Auth->isGithubLogin()){
 ?>
 </div>
 
-<!-- Login with Google -->
+<!-- Login with Google Plus -->
 <div>
 <?php
-echo $this->Html->image(' ', array('alt'=> 'Github', 'border' => '0', 'width'=>'16', 'height'=>'16'));
-
-if($this->Auth->isGoogleLogin()){
-	echo $googleUser->name->givenName . " " . $googleUser->name->familyName;
+echo $this->Html->image('socialicon/google-plus.png', array('alt'=> 'Github', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+echo "&nbsp;";
+if($this->Auth->isGooglePlusLogin()){
+	echo $googlePlusUser->name->givenName . " " . $googlePlusUser->name->familyName;
 }else{
 	echo $this->Html->link(
 			"Google+でログイン",
-			array('action' => '../Login/google'),
+			array('action' => '../Login/googlePlus'),
 			array('target' => '_self', 'escape' => false)
 	);
 }

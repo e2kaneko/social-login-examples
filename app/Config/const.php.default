@@ -11,3 +11,16 @@ $config["Twitter"] = array(
     "consumerSecret" => "",
     "callbackUrl"   => "http://localhost/sb/Login/twitter",
 );
+
+$config["Github"] = array(
+    "appId"  => "",
+    "appSecret" => "",
+    "callbackUrl"   => "http://localhost/sb/Login/github",
+);
+
+$config["GooglePlus"] = array(
+    "appId"  => "",
+    "appSecret" => "",
+    "callbackUrl"   => "http://localhost/sb/Login/googlePlus",
+	"plusApiKey" => "",
+);
