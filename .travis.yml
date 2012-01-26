@@ -14,4 +14,4 @@ before_script:
   - cp ./app/Config/const.php.default ./app/Config/const.php
 
 script:
-  - ./lib/Cake/Console/cake testsuite core AllTests --stderr
+  - ./lib/Cake/Console/cake testsuite app AllTests --stderr
