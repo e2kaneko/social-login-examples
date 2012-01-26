@@ -1,6 +1,0 @@
-<phpunit>
-<testsuite name="My Test Suite">
-  <directory>/path/to/*Test.php files</directory>
-  <file>/app/Test/Case/Controller/ListControllerTest.php</file>
-</testsuite>
-</phpunit>
