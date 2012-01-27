@@ -29,7 +29,7 @@ if($this->Auth->isTwitterLogin()){
 }else{
 	echo $this->Html->link(
 			"Twitterでログイン",
-			array('action' => '../Login/twitter'),
+			array('action' => '../twitter/login'),
 			array('target' => '_self', 'escape' => false)
 	);
 }

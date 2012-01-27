@@ -9,7 +9,7 @@ $config["Facebook"] = array(
 $config["Twitter"] = array(
     "consumerKey"  => "",
     "consumerSecret" => "",
-    "callbackUrl"   => "http://localhost/sb/Login/twitter",
+    "callbackUrl"   => "http://localhost/sb/twitter/login",
 );
 
 $config["Github"] = array(
