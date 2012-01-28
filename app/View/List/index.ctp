@@ -46,7 +46,7 @@ if($this->Auth->isGithubLogin()){
 }else{
 	echo $this->Html->link(
 			"Githubでログイン",
-			array('action' => '../Login/github'),
+			array('action' => '../github/login'),
 			array('target' => '_self', 'escape' => false)
 	);
 }

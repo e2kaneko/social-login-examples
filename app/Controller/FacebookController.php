@@ -29,7 +29,7 @@ class FacebookController extends AppController {
 			$code = $this->params["url"]["code"];
 		}else{
 			// error
-			$this->redirect('/List');
+			$this->redirect('/list');
 		}
 
 		$token_url = "https://graph.facebook.com/oauth/access_token?client_id="
@@ -42,6 +42,6 @@ class FacebookController extends AppController {
 
 		$this->Session->write('user.facebook', $user);
 
-		$this->redirect('/List');
+		$this->redirect('/list');
 	}
 }

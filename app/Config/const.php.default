@@ -15,7 +15,7 @@ $config["Twitter"] = array(
 $config["Github"] = array(
     "appId"  => "",
     "appSecret" => "",
-    "callbackUrl"   => "http://localhost/sb/Login/github",
+    "callbackUrl"   => "http://localhost/sb/github/callback",
 );
 
 $config["GooglePlus"] = array(

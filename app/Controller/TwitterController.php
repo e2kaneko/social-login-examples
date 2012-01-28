@@ -40,7 +40,7 @@ class TwitterController extends AppController {
 			$code = $this->params["url"]["oauth_token"];
 		}else{
 			// error
-			$this->redirect('/List');
+			$this->redirect('/list');
 		}
 
 		$oAuth = new HTTP_OAuth_Consumer($consumerKey, $consumerSecret);
