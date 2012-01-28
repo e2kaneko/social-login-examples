@@ -28,7 +28,7 @@ class TwitterController extends AppController {
 
 		die();
 	}
-	
+
 	public function callback() {
 		App::import('Vendor','pear', array('file'=>'pear'.DS.'HTTP'.DS.'OAuth'.DS.'Consumer.php'));
 

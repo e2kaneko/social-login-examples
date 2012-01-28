@@ -3,13 +3,13 @@
 $config["Facebook"] = array(
     "appId"  => "",
     "appSecret" => "",
-    "callbackUrl"   => "http://localhost/sb/Login/facebook",
+    "callbackUrl"   => "http://localhost/sb/facebook/callback",
 );
 
 $config["Twitter"] = array(
     "consumerKey"  => "",
     "consumerSecret" => "",
-    "callbackUrl"   => "http://localhost/sb/twitter/login",
+    "callbackUrl"   => "http://localhost/sb/twitter/callback",
 );
 
 $config["Github"] = array(

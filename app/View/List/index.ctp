@@ -12,7 +12,7 @@ if($this->Auth->isFacebookLogin()){
 }else{
 	echo $this->Html->link(
 			"Facebookでログイン",
-			array('action' => '../Login/facebook'),
+			array('action' => '../facebook/login'),
 			array('target' => '_self', 'escape' => false)
 	);
 }
