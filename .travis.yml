@@ -12,7 +12,7 @@ env:
 
 before_script:
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE test;'; fi"
-  - chmod -R 777 ./lib/Cake/Console/cake
+  - chmod -R 775 ./lib/Cake/Console/cake
   - chmod -R 777 ./app/tmp
   - cp ./app/Config/const.php.default ./app/Config/const.php
 
