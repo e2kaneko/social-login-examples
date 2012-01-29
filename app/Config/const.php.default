@@ -24,3 +24,9 @@ $config["GooglePlus"] = array(
     "callbackUrl"   => "http://localhost/sb/google_plus/callback",
 	"plusApiKey" => "",
 );
+
+$config["Instagram"] = array(
+    "appId"  => "",
+    "appSecret" => "",
+    "callbackUrl"   => "http://localhost/sb/instagram/callback",
+);

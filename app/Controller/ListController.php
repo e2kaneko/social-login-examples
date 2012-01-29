@@ -16,5 +16,8 @@ class ListController extends AppController {
 
 		$googleUser = $this->Session->read('user.google-plus');
 		$this->set('googlePlusUser', $googleUser);
+
+		$instagramUser = $this->Session->read('user.instagram');
+		$this->set('instagramUser', $instagramUser);
 	}
 }

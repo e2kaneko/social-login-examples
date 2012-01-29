@@ -56,7 +56,7 @@ if($this->Auth->isGithubLogin()){
 <!-- Login with Google Plus -->
 <div>
 <?php
-echo $this->Html->image('socialicon/google-plus.png', array('alt'=> 'Github', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+echo $this->Html->image('socialicon/google-plus.png', array('alt'=> 'Google+', 'border' => '0', 'width'=>'16', 'height'=>'16'));
 echo "&nbsp;";
 if($this->Auth->isGooglePlusLogin()){
 	echo $googlePlusUser->name->givenName . " " . $googlePlusUser->name->familyName;
@@ -64,6 +64,23 @@ if($this->Auth->isGooglePlusLogin()){
 	echo $this->Html->link(
 			"Google+でログイン",
 			array('action' => '../google_plus/login'),
+			array('target' => '_self', 'escape' => false)
+	);
+}
+?>
+</div>
+
+<!-- Login with Instagram Plus -->
+<div>
+<?php
+echo $this->Html->image('socialicon/instagram.png', array('alt'=> 'Instagram', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+echo "&nbsp;";
+if($this->Auth->isInstagramLogin()){
+	echo $instagramUser{"username"};
+}else{
+	echo $this->Html->link(
+			"Instagramでログイン",
+			array('action' => '../instagram/login'),
 			array('target' => '_self', 'escape' => false)
 	);
 }

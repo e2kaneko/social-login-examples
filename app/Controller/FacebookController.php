@@ -10,35 +10,31 @@ class FacebookController extends AppController {
 		$appId = Configure::read("Facebook.appId");
 		$appSecret = Configure::read("Facebook.appSecret");
 		$callbackUrl = Configure::read("Facebook.callbackUrl");
-		$code = null;
 
-		$dialog_url = "http://www.facebook.com/dialog/oauth?client_id="
+		$dialogUrl = "http://www.facebook.com/dialog/oauth?client_id="
 		. $appId . "&redirect_uri=" . urlencode($callbackUrl);
-		$this->redirect($dialog_url);
+		$this->redirect($dialogUrl);
 	}
 
 	public function callback() {
 		$this->Session->write('user.facebook', array());
 
-		$appId = Configure::read("Facebook.appId");
-		$appSecret = Configure::read("Facebook.appSecret");
-		$callbackUrl = Configure::read("Facebook.callbackUrl");
-		$code = null;
-
-		if(isset($this->params["url"]["code"])){
-			$code = $this->params["url"]["code"];
-		}else{
-			// error
+		if(!isset($this->params["url"]["code"])){
 			$this->redirect('/list');
 		}
 
-		$token_url = "https://graph.facebook.com/oauth/access_token?client_id="
+		$appId = Configure::read("Facebook.appId");
+		$appSecret = Configure::read("Facebook.appSecret");
+		$callbackUrl = Configure::read("Facebook.callbackUrl");
+		$code = $this->params["url"]["code"];
+
+		$tokenUrl = "https://graph.facebook.com/oauth/access_token?client_id="
 		. $appId . "&redirect_uri=" . urlencode($callbackUrl) . "&client_secret="
 		. $appSecret . "&code=" . $code;
 
-		$access_token = file_get_contents($token_url);
-		$graph_url = "https://graph.facebook.com/me?" . $access_token;
-		$user = json_decode(file_get_contents($graph_url));
+		$accessToken = file_get_contents($tokenUrl);
+		$graphUrl = "https://graph.facebook.com/me?" . $accessToken;
+		$user = json_decode(file_get_contents($graphUrl));
 
 		$this->Session->write('user.facebook', $user);
 

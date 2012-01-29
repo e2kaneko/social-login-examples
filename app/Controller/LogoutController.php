@@ -9,6 +9,7 @@ class LogoutController extends AppController {
 		$this->Session->delete('user.twitter');
 		$this->Session->delete('user.github');
 		$this->Session->delete('user.google-plus');
+		$this->Session->delete('user.instagram');
 		$this->Session->destroy();
 		$this->redirect('/list');
 	}
