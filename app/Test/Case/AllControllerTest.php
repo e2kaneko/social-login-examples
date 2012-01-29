@@ -13,6 +13,7 @@ class AllControllersTest extends PHPUnit_Framework_TestSuite {
 		$suite->addTestFile(APP_TEST_CASES . DS . 'Controller' . DS . 'GithubControllerTest.php');
 		$suite->addTestFile(APP_TEST_CASES . DS . 'Controller' . DS . 'TwitterControllerTest.php');
 		$suite->addTestFile(APP_TEST_CASES . DS . 'Controller' . DS . 'FacebookControllerTest.php');
+		$suite->addTestFile(APP_TEST_CASES . DS . 'Controller' . DS . 'GooglePlusControllerTest.php');
 		return $suite;
 	}
 }

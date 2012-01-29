@@ -63,7 +63,7 @@ if($this->Auth->isGooglePlusLogin()){
 }else{
 	echo $this->Html->link(
 			"Google+でログイン",
-			array('action' => '../Login/googlePlus'),
+			array('action' => '../google_plus/login'),
 			array('target' => '_self', 'escape' => false)
 	);
 }

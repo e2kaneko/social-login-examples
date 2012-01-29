@@ -21,6 +21,6 @@ $config["Github"] = array(
 $config["GooglePlus"] = array(
     "appId"  => "",
     "appSecret" => "",
-    "callbackUrl"   => "http://localhost/sb/Login/googlePlus",
+    "callbackUrl"   => "http://localhost/sb/google_plus/callback",
 	"plusApiKey" => "",
 );
