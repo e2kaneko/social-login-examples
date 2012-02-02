@@ -5,7 +5,7 @@ class InstagramController extends AppController {
 	public $components = array('Session');
 
 	public function login() {
-		$this->Session->write('user.facebook', array());
+		$this->Session->write('user.instagram', array());
 
 		$appId = Configure::read("Instagram.appId");
 		$appSecret = Configure::read("Instagram.appSecret");

@@ -6,39 +6,43 @@
 		Social Login Examples : <?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $this->Html->css('http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css');
+		echo $this->Html->css('bootstrap');
+		echo $this->Html->css('bootstrap.plus');
 	?>
 </head>
 <body>
-	<div class="topbar">
-		<div class="fill">
+
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
 			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="i-bar"></span>
+					<span class="i-bar"></span>
+					<span class="i-bar"></span>
+         		</a>
 				<a class="brand" href="#">Social Login Examples</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="https://github.com/e2kaneko/SocialLoginExamples" target="_blank">View project on Github</a></li>
+						<li><a href="http://travis-ci.org/#!/e2kaneko/SocialLoginExamples" target="_blank">View project CI on Travis</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
 			</div>
 		</div>
 	</div>
 
 	<div class="container">
-		<div class="hero-unit">
-			<h1>Welcome!</h1>
-			<p>ソーシャルネットワークのAPIを利用してログインするコードを集めるプロジェクトです。</p>
-			<p>ウェブアプリケーションフレームワークに<?php echo $this->Html->link('CakePHP2.0', 'http://cakephp.jp/', array('target'=>'_blank')); ?>を、UIフレームワークに<?php echo $this->Html->link('bootstrap', 'http://twitter.github.com/bootstrap/', array('target'=>'_blank')); ?>を使っています。</p>
-  		</div>
-
-
-
-		<div class="row">
-			<div class="span16">
-				<?php echo $this->Session->flash(); ?>
-				<?php echo $content_for_layout; ?>
-			</div>
-		</div>
+		<?php echo $this->Session->flash(); ?>
+		<?php echo $content_for_layout; ?>
 
 		<div class="row">
 			<div class="span16">
 				<?php echo $this->element('sql_dump'); ?>
 			</div>
 		</div>
+		
+		<hr>
 
 		<footer>
 			<p>&copy; Company 2012</p>
