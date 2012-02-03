@@ -102,7 +102,22 @@
 
 			</div>
 		    <div class="span3">
-				&nbsp;
+
+				<!-- Login with LinkedIn -->
+				<?php
+				echo $this->Html->image('socialicon/linkedin.png', array('alt'=> 'Linkedin', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+				echo "&nbsp;";
+				if($this->Auth->isLinkedinLogin()){
+					echo $linkedinUser{"username"};
+				}else{
+					echo $this->Html->link(
+							"LinkedInでログイン",
+							array('action' => '../linkedin/login'),
+							array('target' => '_self', 'escape' => false)
+					);
+				}
+				?>
+
 			</div>
 		    <div class="span3">
 				&nbsp;

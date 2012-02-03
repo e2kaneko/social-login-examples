@@ -7,6 +7,8 @@ class TwitterController extends AppController {
 	public function login() {
 		App::import('Vendor','pear', array('file'=>'pear'.DS.'HTTP'.DS.'OAuth'.DS.'Consumer.php'));
 
+		$this->Session->write('user.twitter', array());
+		
 		$consumerKey = Configure::read("Twitter.consumerKey");
 		$consumerSecret = Configure::read("Twitter.consumerSecret");
 		$callbackUrl = Configure::read("Twitter.callbackUrl");
@@ -32,6 +34,8 @@ class TwitterController extends AppController {
 	public function callback() {
 		App::import('Vendor','pear', array('file'=>'pear'.DS.'HTTP'.DS.'OAuth'.DS.'Consumer.php'));
 
+		$this->Session->write('user.twitter', array());
+		
 		$consumerKey = Configure::read("Twitter.consumerKey");
 		$consumerSecret = Configure::read("Twitter.consumerSecret");
 		$callbackUrl = Configure::read("Twitter.callbackUrl");
@@ -68,6 +72,6 @@ class TwitterController extends AppController {
 		$twitterUser = array("user"=>(string)$responseXml->name);
 		$this->Session->write('user.twitter', $twitterUser);
 
-		$this->redirect('/List');
+		$this->redirect('/list');
 	}
 }
