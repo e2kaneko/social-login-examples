@@ -30,3 +30,16 @@ $config["Instagram"] = array(
     "appSecret" => "",
     "callbackUrl"   => "http://localhost/sb/instagram/callback",
 );
+
+$config["Dropbox"] = array(
+    "consumerKey"  => "",
+    "consumerSecret" => "",
+    "callbackUrl"   => "http://localhost/sb/dropbox/callback",
+);
+
+$config["Bitly"] = array(
+    "clientId"  => "",
+    "clientSecret" => "",
+    "callbackUrl"   => "http://localhost/sb/bitly/callback",
+);
+

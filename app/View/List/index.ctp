@@ -103,16 +103,16 @@
 			</div>
 		    <div class="span3">
 
-				<!-- Login with LinkedIn -->
+				<!-- Login with Dropbox -->
 				<?php
-				echo $this->Html->image('socialicon/linkedin.png', array('alt'=> 'Linkedin', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+				echo $this->Html->image('socialicon/dropbox.png', array('alt'=> 'Dropbox', 'border' => '0', 'width'=>'16', 'height'=>'16'));
 				echo "&nbsp;";
-				if($this->Auth->isLinkedinLogin()){
-					echo $linkedinUser{"username"};
+				if($this->Auth->isDropboxLogin()){
+					echo $dropboxUser{"user"};
 				}else{
 					echo $this->Html->link(
-							"LinkedInでログイン",
-							array('action' => '../linkedin/login'),
+							"Dropboxでログイン",
+							array('action' => '../dropbox/login'),
 							array('target' => '_self', 'escape' => false)
 					);
 				}
@@ -120,7 +120,22 @@
 
 			</div>
 		    <div class="span3">
-				&nbsp;
+
+				<!-- Login with Bitly -->
+				<?php
+				echo $this->Html->image('socialicon/bitly.png', array('alt'=> 'Bitly', 'border' => '0', 'width'=>'16', 'height'=>'16'));
+				echo "&nbsp;";
+				if($this->Auth->isBitlyLogin()){
+					echo $bitlyUser{"user"};
+				}else{
+					echo $this->Html->link(
+							"Bitlyでログイン",
+							array('action' => '../bitly/login'),
+							array('target' => '_self', 'escape' => false)
+					);
+				}
+				?>
+
 			</div>
 		    <div class="span3">
 				&nbsp;

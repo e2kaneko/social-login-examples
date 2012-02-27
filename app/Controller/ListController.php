@@ -19,5 +19,11 @@ class ListController extends AppController {
 
 		$instagramUser = $this->Session->read('user.instagram');
 		$this->set('instagramUser', $instagramUser);
+
+		$dropboxUser = $this->Session->read('user.dropbox');
+		$this->set('dropboxUser', $dropboxUser);
+
+		$bitlyUser = $this->Session->read('user.bitly');
+		$this->set('bitlyUser', $bitlyUser);
 	}
 }

@@ -27,12 +27,17 @@ class AuthHelper extends SessionHelper {
 		return !empty($googleUser);
 	}
 
-	function isLinkedinLogin(){
-		$linkedinUser = $this->read("user.linkedin");
-		return !empty($linkedinUser);
+	function isDropboxLogin(){
+		$dropboxUser = $this->read("user.dropbox");
+		return !empty($dropboxUser);
+	}
+
+	function isBitlyLogin(){
+		$bitlyUser = $this->read("user.bitly");
+		return !empty($bitlyUser);
 	}
 
 	function isLogin(){
-		return ($this->isInstagramLogin() || $this->isTwitterLogin() || $this->isFacebookLogin() || $this->isGithubLogin() || $this->isGooglePlusLogin());
+		return ($this->isInstagramLogin() || $this->isTwitterLogin() || $this->isFacebookLogin() || $this->isGithubLogin() || $this->isGooglePlusLogin() || $this->isDropboxLogin() || $this->isBitlyLogin());
 	}
 }
